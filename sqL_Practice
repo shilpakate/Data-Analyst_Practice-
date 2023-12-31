@@ -1,1 +1,74 @@
 It has SQL Scripts which useful to clear some basics
+
+
+create database Dec24;
+
+use Dec24
+CREATE TABLE Employee(
+    EmpId integer, 
+    FirstName varchar(20), 
+    LastName varchar(20), 
+    Email varchar(25), 
+    PhoneNo varchar(25), 
+    Salary integer
+);
+
+INSERT INTO Employee
+VALUES(1,'John','King','john.king@abc.com','123.123.1834',33000),
+(3,'Neena','Kochhar','neena@test.com','123.456.4568',17000),
+(4,'Lex','De Haan','lex@test.com','123.456.4569',15000),
+(5,'Neenashi','Kochhar','neessna@test.com','193.456.4568',190000),
+(6,'Lexi','De Haan','lessx@test.com','193.456.4569',105000);
+
+
+
+CREATE TABLE Dept(
+    DeptId integer, 
+    Deptname varchar(20), 
+    EmpId varchar(20), 
+);
+
+
+INSERT INTO Dept
+VALUES(1001,'IT',1),
+(1002,'Comp',2),
+(1003,'IT',3),
+(1004,'Comp',4),
+(1005,'IT',5);
+
+
+
+
+--Select dept name and count of its related emps
+
+select deptname,count(EmpId)
+from Dept
+group by Deptname
+order by Deptname
+
+--Inner Join
+select e.EmpId,e.Salary, d.Deptname from  Employee e Inner Join 
+Dept D on e.EmpId= d.EmpId
+
+-- max salary
+select * from Employee where Salary in (select max(salary) from Employee)
+
+--2nd Highest salary
+With Salaries AS(
+select 
+	EmpId,
+	Salary,
+	DENSE_RANK() OVER ( order by Salary DESC) As SalaryRank
+From Employee
+)
+select * from Salaries
+where SalaryRank=2
+
+
+--Consegative numbers
+SELECT DISTINCT a.EmpId
+FROM Employee a, Employee b, Employee c
+WHERE a.EmpId = b.EmpId AND b.EmpId = c.EmpId
+AND a.Empid = b.Empid - 1 AND b.Empid = c.Empid - 1;
+
+SELECT * FROM Employee`
