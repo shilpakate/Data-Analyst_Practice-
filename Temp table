@@ -1,0 +1,58 @@
+Create table
+Insert data
+display it
+Perform Analysis
+
+--------------------------------
+use Dec24
+
+CREATE TABLE Temp (
+    ID INT PRIMARY KEY,
+    AreaName VARCHAR(255),
+	TempD float,
+    Date1 DATE
+);
+
+
+INSERT INTO Temp (ID,AreaName, TempD, Date1)
+VALUES
+    (1,'Pune', 35.6, '2023-06-25'),
+    (2,'Pune', 36.6, '2023-06-26'),
+    (3,'Delhi', 38.6, '2023-06-25'),
+    (4,'Delhi', 25.6, '2023-06-26'),
+    (5,'Mumbai', 40.6, '2023-06-25'),
+    (6,'Mumbai', 40.6, '2023-06-26');
+
+
+---1. Display all
+	Select * from Temp
+-- 2.Display the records when Higher Temperature Than Previous Day
+	select 
+	t1.AreaName,
+	t1.TempD,
+	t1.Date1 as PreviousDate,
+	t2.TempD,
+	t2.Date1 as Currentdate
+	from Temp t1 JOIN Temp t2 on
+	t1.AreaName=t2.AreaName 
+	where
+	t1.TempD <t2.TempD
+	and DATEDIFF(day,t1.Date1,t2.Date1)>0
+	
+
+--3. Find temp is increased or decreased at next day
+	select 
+	t1.AreaName,
+	t1.TempD,
+	t1.Date1,
+	t2.TempD,
+	t2.Date1,
+	Case 
+		when (t1.TempD<t2.TempD ) then 'Tempeature_increased' 
+		else 'Temp decreased or stable' 
+	End as Tempchanges
+	from Temp t1 JOIN Temp t2 on
+	t1.AreaName=t2.AreaName  where
+	t1.Date1<t2.Date1 
+	and DATEDIFF(day,t1.Date1,t2.Date1)=1
+
