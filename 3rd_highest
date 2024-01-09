@@ -1,0 +1,25 @@
+SELECT MAX(age) AS third_highest_age
+FROM Customers
+WHERE age < (
+    SELECT MAX(age)
+    FROM Customers
+)
+AND age < (
+    SELECT MAX(age)
+    FROM Customers
+    WHERE age < (
+        SELECT MAX(age)
+        FROM Customers
+    )
+);
+
+
+2nd Appproch
+
+WITH RankedAges AS (
+  SELECT age, DENSE_RANK() OVER (ORDER BY age DESC) AS rnk
+  FROM Customers
+)
+SELECT age
+FROM RankedAges
+WHERE rnk = 3;
