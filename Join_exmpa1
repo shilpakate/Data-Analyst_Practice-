@@ -1,0 +1,12 @@
+--- https://www.programiz.com/sql/online-compiler/
+
+Join operations 
+----Select the customers and there count of orders with total amount
+
+SELECT c.customer_id,c.first_name,
+       COUNT(o.customer_id) AS Total_items,
+       COALESCE(SUM(o.amount), 0) AS Total_Amount
+FROM Customers c
+LEFT JOIN Orders o ON c.customer_id = o.customer_id
+GROUP BY c.customer_id
+ORDER BY c.customer_id;
