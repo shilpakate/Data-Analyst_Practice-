@@ -1,0 +1,31 @@
+import pandas as pd
+
+# Define the list
+letters = ['a', 'a', 'b', 'b', 'c', 'c', 'd', 'd']
+
+# Create a pandas Series
+letter_series = pd.Series(letters)
+
+# Use value_counts to count occurrences
+letter_counts_series = letter_series.value_counts().to_dict()
+
+# Print the result
+print(letter_counts_series)
+
+
+**************using 
+from collections import Counter
+
+# Define the list
+letters = ['a', 'a', 'b', 'b', 'c', 'c', 'd', 'd']
+
+# Use Counter to count occurrences
+letter_counts = Counter(letters)
+
+# Convert Counter to dictionary
+letter_counts_dict = dict(letter_counts)
+
+# Print the result
+print(letter_counts_dict)
+
+****************************
