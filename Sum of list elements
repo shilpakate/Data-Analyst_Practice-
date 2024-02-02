@@ -1,0 +1,7 @@
+L = [1, 2, 37, 4, 5,5]
+
+# Calculate the sum of the list elements
+lst_sum = sum(L)
+
+# Print the result
+print("Sum of the list elements:", lst_sum)
