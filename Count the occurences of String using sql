@@ -1,0 +1,21 @@
+declare @st nvarchar(MAX)='Shilpa Kate';
+with CharacterCTE as
+(
+select
+SUBSTRING(@st,1,1)as character,
+STUFF(@st,1,1,'')as Remain
+UNION ALL
+select 
+	substring(Remain,1,1),
+	stuff(Remain,1,1,'')
+from CharacterCTE
+where len(Remain)>0
+)
+select character,
+count(*) As occurences
+from CharacterCTE
+where character !=''
+group by character
+order by occurences desc
+
+
