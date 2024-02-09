@@ -1,0 +1,35 @@
+CREATE TABLE cities (
+    city_name VARCHAR(255),
+    population INT
+);
+
+-- Insert some sample data
+INSERT INTO cities (city_name, population) VALUES
+    ('City1', 100000),
+    ('City2', 200000),
+    ('City3', 150000),
+    ('City4', 300000),
+    ('City5', 250000);
+
+-- Calculate the median population
+SELECT
+  city_name,
+  PERCENTILE_CONT(0.50) WITHIN GROUP (ORDER BY population) over() AS median_population
+FROM
+  cities;
+
+
+
+
+  ----
+
+CREATE TABLE percont_SAT (reading_writing int, math int);
+
+INSERT INTO percont_SAT VALUES (800,800),(650,300),(700,500);
+
+SELECT reading_writing, math, reading_writing + math AS total,
+PERCENTILE_CONT(.9)
+WITHIN GROUP (ORDER BY reading_writing + math)
+OVER () AS '90th Percentile'
+FROM percont_SAT;
+
