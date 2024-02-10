@@ -1,0 +1,7 @@
+-- Assuming you have a table named 'your_table' with a column 'number'
+-- You can adapt this query based on your actual table structure
+
+SELECT '100' AS number
+UNION
+SELECT CAST(numbers AS VARCHAR) AS number
+FROM generate_series(1, 99) AS numbers;
