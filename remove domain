@@ -1,0 +1,6 @@
+create table domain_table(domainname varchar(30));
+
+
+INSERT INTO domain_table (domainname) VALUES ('www.facebook.com'), ('facebook.com'), ('facebook');
+-- Select data without www. prefix and .com suffix
+SELECT REPLACE(REPLACE(domainname, 'www.', ''), '.com', '') AS modified_domain FROM domain_table;
