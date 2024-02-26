@@ -1,0 +1,60 @@
+-- Create Table A
+CREATE TABLE tableA (
+    column_name INT
+);
+delete  tableA
+-- Insert Values into Table A
+INSERT INTO tableA (column_name) VALUES
+    (1),
+    (1),
+    (2),
+    (2),
+    (NULL),
+    (0),
+	(0);
+
+-- Create Table B
+CREATE TABLE tableB (
+    column_name INT
+);
+
+-- Insert Values into Table B
+INSERT INTO tableB (column_name) VALUES
+    (1),
+    (2),
+    (NULL),
+    (NULL);
+
+
+SELECT * FROM tableA
+FULL OUTER JOIN tableB ON tableA.column_name = tableB.column_name;
+
+
+SELECT * FROM tableA
+INNER JOIN tableB ON tableA.column_name = tableB.column_name;
+
+
+SELECT * FROM tableA
+LEFT JOIN tableB ON tableA.column_name = tableB.column_name;
+
+
+
+SELECT * FROM tableA
+Right JOIN tableB ON tableA.column_name = tableB.column_name;
+
+
+
+SELECT * FROM tableA
+Union all
+SELECT * FROM tableB
+
+SELECT * FROM tableA
+Union 
+SELECT * FROM tableB
+
+
+SELECT * FROM tableB
+Except
+SELECT * FROM tableA
+
+
