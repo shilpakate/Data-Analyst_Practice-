@@ -1,0 +1,28 @@
+use AdventureWorksDW2019
+CREATE TABLE DimProduct (
+    ProductKey INT PRIMARY KEY,
+    ProductAlternateKey NVARCHAR(50),
+    ProductSubcategoryKey INT,
+    WeightUnitMeasureCode NVARCHAR(3),
+    SizeUnitMeasureCode NVARCHAR(3),
+    EnglishProductName NVARCHAR(255),
+    StandardCost DECIMAL(18, 2),
+    FinishedGoodsFlag BIT,
+    Color NVARCHAR(15),
+    SafetyStockLevel INT,
+    ReorderPoint INT,
+    ListPrice DECIMAL(18, 2),
+    Size NVARCHAR(50),
+    SizeRange NVARCHAR(50),
+    Weight DECIMAL(18, 2),
+    DaysToManufacture INT,
+    ProductLine NVARCHAR(2),
+    DealerPrice DECIMAL(18, 2),
+    Class NVARCHAR(2),
+    Style NVARCHAR(2),
+    ModelName NVARCHAR(50),
+    EnglishDescription NVARCHAR(MAX),
+    StartDate DATE,
+    EndDate DATE,
+    Status NVARCHAR(10)
+);
